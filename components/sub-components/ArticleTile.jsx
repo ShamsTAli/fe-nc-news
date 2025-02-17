@@ -9,13 +9,24 @@ import {
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import CommentIcon from "@mui/icons-material/Comment";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import { useNavigate } from "react-router";
 
 export const ArticleTile = ({ articles }) => {
+  const navigate = useNavigate();
+  const handleClick = (article_id) => {
+    navigate(`/article/${article_id}`);
+  };
+
   return (
     <div className="article-tile-container">
       {articles.map((article) => {
         return (
-          <div className="article-tile" key={article.article_id}>
+          <div
+            className="article-tile"
+            key={article.article_id}
+            onClick={() => handleClick(article.article_id)}
+            style={{ cursor: "pointer" }}
+          >
             <Card sx={{ maxWidth: 400, borderRadius: 3, boxShadow: 3, m: 2 }}>
               <CardMedia
                 component="img"

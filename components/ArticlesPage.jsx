@@ -11,7 +11,7 @@ export const ArticlesPage = () => {
         getArticles().then((articleData)=>{
             setArticles(articleData)
         })
-    })
+    }, [])
 
   return (
     <div className="articles-page-container">
