@@ -27,7 +27,6 @@ html {
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  border: solid red 1px;
 }
 
 a {
@@ -39,7 +38,6 @@ a {
 }
 
 .navbar {
-  border: solid red 1px;
   margin-top: 20px;
 }
 
@@ -53,10 +51,6 @@ nav ul {
 
 nav li {
   margin-right: 20px;
-}
-
-.articles-page-container {
-  border: solid rgb(94, 112, 214) 1px;
 }
 
 .nav-articles {
