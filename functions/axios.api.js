@@ -17,7 +17,17 @@ export const getArticleById = (article_id) => {
       return response.data.article;
     })
     .catch((error) => {
-      console.log("in catch block");
+      console.error(error);
+    });
+};
+
+export const getArticleComments = (article_id) => {
+  return ncAPI
+    .get(`/articles/${article_id}/comments`)
+    .then((response) => {
+      return response.data.article;
+    })
+    .catch((error) => {
       console.error(error);
     });
 };
