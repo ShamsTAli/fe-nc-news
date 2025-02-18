@@ -12,6 +12,7 @@
   padding: 0;
   color: var(--text-color);
   background-color: var(--background-color);
+  overflow: auto !important;
 }
 
 *,
@@ -27,6 +28,7 @@ html {
 body {
   background-color: var(--background-color);
   color: var(--text-color);
+  overflow: auto !important;
 }
 
 a {
@@ -92,4 +94,28 @@ nav li {
   transform: translateY(-2px);
   transition: transform 0.1s ease;
   transform: scale(1.05);
+}
+
+.p-test {
+  border: solid red 1px;
+  overflow-y: auto;
+  max-height: 100vh;
+  min-height: 500px;
+}
+/* Setting overflow because of scrolling issue: */
+
+.article-tile-container
+  .article-tile
+  .indv-article-container
+  .article-page-comments-list {
+  overflow: auto !important;
+}
+
+.comment {
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
