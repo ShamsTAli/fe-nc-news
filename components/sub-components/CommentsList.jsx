@@ -17,20 +17,20 @@ export const CommentsList = () => {
     });
   }, [article_id]);
 
-  if (!commentList.length) return <Preloader/>
+  if (!commentList.length) return <p>There are no comments...</p>;
 
   return (
     <div className="article-page-comments-list">
       {commentList.map((comment) => {
         return (
-          <div className="comment" key={comment.article_id + comment.created_at}>
+          <div
+            className="comment"
+            key={comment.article_id + comment.created_at}
+          >
             <h6>{comment.author}</h6>
             <p>{comment.body}</p>
             <CardActions>
               <Button size="small" startIcon={<ThumbUpIcon />}>
-                {comment.votes}
-              </Button>
-              <Button size="small" startIcon={<ThumbDownIcon />}>
                 {comment.votes}
               </Button>
             </CardActions>

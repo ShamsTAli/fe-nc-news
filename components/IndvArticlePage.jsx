@@ -1,21 +1,31 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getArticleById } from "../functions/axios.api";
+import {
+  getArticleById,
+  patchArticleVoteDecrease,
+  patchArticleVoteIncrease,
+} from "../functions/axios.api";
 import {
   Card,
   CardContent,
   CardMedia,
   Typography,
   Container,
+  CardActions,
+  Button,
   Paper,
 } from "@mui/material";
 import { Preloader } from "./sub-components/Preloader";
 import { CommentsList } from "./sub-components/CommentsList";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
 export const IndvArticlePage = () => {
   const { article_id } = useParams();
-
   const [selectArticle, setSelectArticle] = useState(null);
+  const [currVotes, setCurrVotes] = useState(0);
+  const [currVotesDecrease, setCurrVotesDecrease] = useState(0);
 
   useEffect(() => {
     getArticleById(article_id).then((selectedArticle) => {
@@ -25,6 +35,24 @@ export const IndvArticlePage = () => {
 
   if (!selectArticle) {
     return <Preloader />;
+  }
+
+  function handleVoteIncrease() {
+    if (currVotes === 0) {
+      setCurrVotes(1);
+      patchArticleVoteIncrease(article_id).catch(() => {
+        setCurrVotes(0);
+      });
+    }
+  }
+
+  function handleVoteDecrease() {
+    if (currVotesDecrease === 0) {
+      setCurrVotesDecrease(-1);
+      patchArticleVoteDecrease(article_id).catch(() => {
+        setCurrVotesDecrease(0);
+      });
+    }
   }
 
   return (
@@ -50,8 +78,23 @@ export const IndvArticlePage = () => {
                 {selectArticle.body}
               </Typography>
             </CardContent>
+            <CardActions>
+              <Button size="large" startIcon={<ThumbUpIcon />}>
+                {selectArticle.votes + currVotes + currVotesDecrease}
+              </Button>
+              <Button
+                size="small"
+                startIcon={<ThumbUpOffAltIcon />}
+                onClick={handleVoteIncrease}
+              ></Button>
+              <Button
+                size="small"
+                startIcon={<ThumbDownOffAltIcon />}
+                onClick={handleVoteDecrease}
+              ></Button>
+            </CardActions>
           </Card>
-        <CommentsList />
+          <CommentsList />
         </Paper>
       </Container>
     </div>
