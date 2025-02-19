@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getArticleComments } from "../../functions/axios.api";
-import { Preloader } from "./Preloader";
 import { CardActions, Button } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 
-export const CommentsList = () => {
-  const [commentList, setViewCommentList] = useState([]);
+export const CommentsList = ({commentList, setCommentList}) => {
 
   const { article_id } = useParams();
 
   useEffect(() => {
     getArticleComments(article_id).then((articleComments) => {
-      setViewCommentList(articleComments);
+      setCommentList(articleComments);
     });
   }, [article_id]);
 

@@ -59,3 +59,15 @@ export const patchArticleVoteDecrease = (article_id) => {
       console.log("Unsuccessful patch");
     });
 };
+
+export const postArticleComment = (article_id, data) => {
+  return ncAPI
+    .post(`/articles/${article_id}/comments`, data)
+    .then(({data}) => {
+      console.log("AXIOS successful comment post");
+      return data
+    })
+    .catch(() => {
+      console.log("AXIOS comment didn't post");
+    });
+};

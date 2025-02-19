@@ -18,14 +18,19 @@ import {
 import { Preloader } from "./sub-components/Preloader";
 import { CommentsList } from "./sub-components/CommentsList";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import AddCommentIcon from "@mui/icons-material/AddComment";
+import Drawer from "@mui/material/Drawer";
+import { AddCommentForm } from "./sub-components/AddCommentForm";
 
 export const IndvArticlePage = () => {
   const { article_id } = useParams();
   const [selectArticle, setSelectArticle] = useState(null);
   const [currVotes, setCurrVotes] = useState(0);
   const [currVotesDecrease, setCurrVotesDecrease] = useState(0);
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  const [commentList, setCommentList] = useState([]);
 
   useEffect(() => {
     getArticleById(article_id).then((selectedArticle) => {
@@ -92,9 +97,28 @@ export const IndvArticlePage = () => {
                 startIcon={<ThumbDownOffAltIcon />}
                 onClick={handleVoteDecrease}
               ></Button>
+              <Button
+                size="medium"
+                startIcon={<AddCommentIcon />}
+                onClick={() => setShowCommentForm(true)}
+              ></Button>
+              <Drawer
+                anchor="bottom"
+                open={showCommentForm}
+                onClose={() => setShowCommentForm(false)}
+              >
+                <AddCommentForm
+                  setShowCommentForm={setShowCommentForm}
+                  setCommentList={setCommentList}
+                  commentList={commentList}
+                />
+              </Drawer>
             </CardActions>
           </Card>
-          <CommentsList />
+          <CommentsList
+            commentList={commentList}
+            setCommentList={setCommentList}
+          />
         </Paper>
       </Container>
     </div>

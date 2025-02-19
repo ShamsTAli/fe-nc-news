@@ -4,7 +4,7 @@
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   line-height: 1.5;
-  --primary-color: #007bff;
+  --primary-color: #1470d3;
   --secondary-color: #6c757d;
   --background-color: #f8f9fa;
   --text-color: #333;
@@ -37,6 +37,14 @@ a {
 
 .btn-primary {
   background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 18px;
+  max-height: 50px;
 }
 
 .navbar {
@@ -118,4 +126,14 @@ nav li {
   border: 1px solid #eee;
   border-radius: 5px;
   background-color: #f9f9f9;
+}
+
+.comment-form {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.comment-label {
+  margin-right: 20px;
 }
