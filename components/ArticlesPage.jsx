@@ -21,7 +21,6 @@ export const ArticlesPage = () => {
     <div className="articles-page-container">
       <ArticlesNavbar />
       <ArticleTile articles={articles} />
-      <p className="p-test">Scroll Box</p>
     </div>
   );
 };

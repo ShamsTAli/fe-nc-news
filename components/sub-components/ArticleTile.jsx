@@ -49,9 +49,6 @@ export const ArticleTile = ({ articles }) => {
                 <Button size="small" startIcon={<ThumbUpIcon />}>
                   {article.votes}
                 </Button>
-                <Button size="small" startIcon={<ThumbDownIcon />}>
-                  {article.votes}
-                </Button>
                 <Button size="small" startIcon={<CommentIcon />}>
                   {article.comment_count}
                 </Button>

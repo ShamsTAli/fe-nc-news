@@ -31,3 +31,31 @@ export const getArticleComments = (article_id) => {
       console.error(error);
     });
 };
+
+export const patchArticleVoteIncrease = (article_id) => {
+  return ncAPI
+    .patch(`/articles/${article_id}`, {
+      inc_votes: 1,
+      article_id: article_id,
+    })
+    .then(() => {
+      console.log("Successful patch");
+    })
+    .catch((err) => {
+      console.log("Unsuccessful patch");
+    });
+};
+
+export const patchArticleVoteDecrease = (article_id) => {
+  return ncAPI
+    .patch(`/articles/${article_id}`, {
+      inc_votes: -1,
+      article_id: article_id,
+    })
+    .then(() => {
+      console.log("Successful patch");
+    })
+    .catch((err) => {
+      console.log("Unsuccessful patch");
+    });
+};
