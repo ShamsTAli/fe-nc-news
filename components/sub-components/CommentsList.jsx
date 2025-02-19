@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import { useParams } from "react-router";
-import { getArticleComments } from "../../functions/axios.api";
+import { deleteComment, getArticleComments } from "../../functions/axios.api";
 import { CardActions, Button } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { UserAccount } from "../../contexts/UserAccount";
 
-export const CommentsList = ({commentList, setCommentList}) => {
-
+export const CommentsList = ({ commentList, setCommentList }) => {
+  const { loggedInUser } = useContext(UserAccount);
   const { article_id } = useParams();
 
   useEffect(() => {
@@ -16,6 +18,20 @@ export const CommentsList = ({commentList, setCommentList}) => {
 
   if (!commentList.length) return <p>There are no comments...</p>;
 
+  const handleDelete = async (comment_id) => {
+    const updatedComments = commentList.filter(
+      (comment) => comment.comment_id !== comment_id
+    );
+    setCommentList(updatedComments);
+
+    try {
+      await deleteComment(comment_id);
+      alert("Comment was deleted");
+    } catch (error) {
+      alert("Comment was not deleted");
+      setCommentList([...commentList]);
+    }
+  };
   return (
     <div className="article-page-comments-list">
       {commentList.map((comment) => {
@@ -30,6 +46,16 @@ export const CommentsList = ({commentList, setCommentList}) => {
               <Button size="small" startIcon={<ThumbUpIcon />}>
                 {comment.votes}
               </Button>
+              {comment.author === loggedInUser.username && (
+                <Button
+                  onClick={() => {
+                    handleDelete(comment.comment_id);
+                  }}
+                  size="small"
+                  startIcon={<DeleteForeverIcon />}
+                  sx={{ color: "darkred" }}
+                ></Button>
+              )}
             </CardActions>
           </div>
         );

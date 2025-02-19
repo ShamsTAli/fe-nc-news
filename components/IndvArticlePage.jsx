@@ -17,12 +17,12 @@ import {
 } from "@mui/material";
 import { Preloader } from "./sub-components/Preloader";
 import { CommentsList } from "./sub-components/CommentsList";
+import { AddCommentForm } from "./sub-components/AddCommentForm";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import Drawer from "@mui/material/Drawer";
-import { AddCommentForm } from "./sub-components/AddCommentForm";
 
 export const IndvArticlePage = () => {
   const { article_id } = useParams();

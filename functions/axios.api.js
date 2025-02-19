@@ -71,3 +71,14 @@ export const postArticleComment = (article_id, data) => {
       console.log("AXIOS comment didn't post");
     });
 };
+
+export const deleteComment = (comment_id) =>{
+  return ncAPI
+  .delete(`/comments/${comment_id}`)
+  .then(()=>{
+    console.log("AXIOS successful delete")
+  })
+  .catch(()=>{
+    console.log("AXIOS did not delete")
+  })
+}
