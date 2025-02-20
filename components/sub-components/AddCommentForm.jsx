@@ -3,11 +3,7 @@ import { UserAccount } from "../../contexts/UserAccount";
 import { postArticleComment } from "../../functions/axios.api";
 import { useParams } from "react-router";
 
-export const AddCommentForm = ({
-  setShowCommentForm,
-  commentList,
-  setCommentList,
-}) => {
+export const AddCommentForm = ({ setShowCommentForm, setCommentList }) => {
   const { loggedInUser } = useContext(UserAccount);
   const { article_id } = useParams();
   const [commentInput, setCommentInput] = useState({
@@ -32,7 +28,15 @@ export const AddCommentForm = ({
     };
 
     try {
-      await postArticleComment(article_id, formatData);
+      const response = await postArticleComment(article_id, formatData);
+      const newComment = {
+        comment_id: response.msg.comment_id,
+        body: commentInput.body,
+        author: loggedInUser.username,
+        votes: 10,
+        created_at: new Date().toISOString(),
+      };
+      setCommentList((currentComments) => [newComment, ...currentComments]);
       setCommentInput({ body: "" });
       alert("Comment posted successfully");
     } catch (error) {

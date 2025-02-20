@@ -17,7 +17,7 @@ export const Navbar = () => {
             style={{
               maxWidth: "50%",
               height: "110px",
-              display: "block", //
+              display: "block",
             }}
           />
         </Box>
