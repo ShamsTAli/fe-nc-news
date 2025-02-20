@@ -12,6 +12,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<ArticlesPage />} />
+          <Route path="/articles/:topic" element={<ArticlesPage/>}/>
           <Route path="/article/:article_id" element={<IndvArticlePage />} />
         </Routes>
       </div>
@@ -20,3 +21,5 @@ function App() {
 }
 
 export default App;
+
+
