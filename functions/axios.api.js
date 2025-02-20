@@ -4,10 +4,14 @@ const ncAPI = axios.create({
   baseURL: "https://nc-news-owjx.onrender.com/api",
 });
 
-export const getArticles = () => {
-  return ncAPI.get("/articles").then((response) => {
-    return response.data.articles;
-  });
+export const getArticles = (topic) => {
+  return ncAPI
+    .get("/articles", {
+      params: topic ? { topic } : {},
+    })
+    .then((response) => {
+      return response.data.articles;
+    });
 };
 
 export const getArticleById = (article_id) => {
@@ -39,10 +43,10 @@ export const patchArticleVoteIncrease = (article_id) => {
       article_id: article_id,
     })
     .then(() => {
-      console.log("Successful patch");
+      return
     })
     .catch((err) => {
-      console.log("Unsuccessful patch");
+      console.error(err)
     });
 };
 
@@ -53,32 +57,37 @@ export const patchArticleVoteDecrease = (article_id) => {
       article_id: article_id,
     })
     .then(() => {
-      console.log("Successful patch");
+      return
     })
     .catch((err) => {
-      console.log("Unsuccessful patch");
+      console.error(err)
     });
 };
 
 export const postArticleComment = (article_id, data) => {
   return ncAPI
     .post(`/articles/${article_id}/comments`, data)
-    .then(({data}) => {
-      console.log("AXIOS successful comment post");
-      return data
+    .then(({ data }) => {
+      return data;
     })
-    .catch(() => {
-      console.log("AXIOS comment didn't post");
+    .catch((err) => {
+      console.error(err)
     });
 };
 
-export const deleteComment = (comment_id) =>{
+export const deleteComment = (comment_id) => {
   return ncAPI
-  .delete(`/comments/${comment_id}`)
-  .then(()=>{
-    console.log("AXIOS successful delete")
-  })
-  .catch(()=>{
-    console.log("AXIOS did not delete")
-  })
-}
+    .delete(`/comments/${comment_id}`)
+    .then(() => {
+      return
+    })
+    .catch((err) => {
+      console.error(err)
+    });
+};
+
+export const getTopics = () => {
+  return ncAPI.get("/topics").then(({ data }) => {
+    return data.topics;
+  });
+};
