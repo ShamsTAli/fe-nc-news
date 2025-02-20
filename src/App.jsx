@@ -4,6 +4,7 @@ import { ArticlesPage } from "../components/ArticlesPage";
 import { IndvArticlePage } from "../components/IndvArticlePage";
 import { Routes, Route } from "react-router-dom";
 import { UserAccountProvider } from "../contexts/UserAccount";
+import { NotFoundPage } from "../components/sub-components/NotFoundPage";
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<ArticlesPage />} />
-          <Route path="/articles/:topic" element={<ArticlesPage/>}/>
+          <Route path="/articles" element={<ArticlesPage />} />
+          <Route path="/articles/:topic" element={<ArticlesPage />} />
           <Route path="/article/:article_id" element={<IndvArticlePage />} />
-          <Route path="*" element={<ArticlesPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </UserAccountProvider>
@@ -22,5 +24,3 @@ function App() {
 }
 
 export default App;
-
-

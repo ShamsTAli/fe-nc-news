@@ -15,6 +15,9 @@ export const getArticles = (topic, sortBy = "created_at", order = "DESC") => {
     })
     .then((response) => {
       return response.data.articles;
+    })
+    .catch((err) => {
+      throw err;
     });
 };
 
@@ -24,8 +27,8 @@ export const getArticleById = (article_id) => {
     .then((response) => {
       return response.data.article;
     })
-    .catch((error) => {
-      console.error(error);
+    .catch((err) => {
+      throw err.response;
     });
 };
 

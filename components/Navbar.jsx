@@ -4,18 +4,12 @@ import { Link } from "react-router-dom";
 export const Navbar = () => {
   return (
     <AppBar position="static" sx={{ backgroundColor: "primary.main", mb: 3 }}>
-      <Toolbar>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1 }}
-        ></Typography>
-        <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "left" }}>
+      <Toolbar sx={{ flexGrow: 1, display: "flex", justifyContent: "space-between", ml:2 }}>
+        <Box >
           <img
             src={"../assets/nc-news-logo.jpg"}
             alt="nc-news logo"
             style={{
-              maxWidth: "50%",
               height: "110px",
               display: "block",
             }}
