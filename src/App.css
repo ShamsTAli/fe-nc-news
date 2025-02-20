@@ -82,6 +82,7 @@ nav li {
   padding-right: 30px;
   cursor: pointer;
   transition: border-color 0.2s ease;
+  margin-right: 10px;
 }
 
 .article-tile-container {

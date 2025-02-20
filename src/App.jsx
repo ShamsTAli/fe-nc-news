@@ -14,6 +14,7 @@ function App() {
           <Route path="/" element={<ArticlesPage />} />
           <Route path="/articles/:topic" element={<ArticlesPage/>}/>
           <Route path="/article/:article_id" element={<IndvArticlePage />} />
+          <Route path="*" element={<ArticlesPage />} />
         </Routes>
       </div>
     </UserAccountProvider>

@@ -4,10 +4,14 @@ const ncAPI = axios.create({
   baseURL: "https://nc-news-owjx.onrender.com/api",
 });
 
-export const getArticles = (topic) => {
+export const getArticles = (topic, sortBy = "created_at", order = "DESC") => {
   return ncAPI
     .get("/articles", {
-      params: topic ? { topic } : {},
+      params: {
+        topic: topic || undefined,
+        sort_by: "created_at",
+        order: order,
+      },
     })
     .then((response) => {
       return response.data.articles;
@@ -43,10 +47,10 @@ export const patchArticleVoteIncrease = (article_id) => {
       article_id: article_id,
     })
     .then(() => {
-      return
+      return;
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err);
     });
 };
 
@@ -57,10 +61,10 @@ export const patchArticleVoteDecrease = (article_id) => {
       article_id: article_id,
     })
     .then(() => {
-      return
+      return;
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err);
     });
 };
 
@@ -71,7 +75,7 @@ export const postArticleComment = (article_id, data) => {
       return data;
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err);
     });
 };
 
@@ -79,10 +83,10 @@ export const deleteComment = (comment_id) => {
   return ncAPI
     .delete(`/comments/${comment_id}`)
     .then(() => {
-      return
+      return;
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err);
     });
 };
 

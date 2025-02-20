@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import CommentIcon from "@mui/icons-material/Comment";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useNavigate } from "react-router";
 
 export const ArticleTile = ({ articles }) => {
