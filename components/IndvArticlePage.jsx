@@ -33,20 +33,24 @@ export const IndvArticlePage = () => {
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [commentList, setCommentList] = useState([]);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     getArticleById(article_id)
       .then((selectedArticle) => {
         setSelectArticle(selectedArticle);
+        setIsLoading(false);
       })
       .catch((err) => {
-        setError(err.msg);
+        console.log(err);
+        setError(err.response.data.msg);
+        setIsLoading(false);
       });
   }, [article_id]);
 
-  if (!selectArticle) {
-    return <Preloader />;
-  }
+  if (error) return <NotFoundPage />;
+  if (isLoading) return <Preloader />;
 
   function handleVoteIncrease() {
     if (currVotes === 0) {

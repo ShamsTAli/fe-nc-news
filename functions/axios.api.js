@@ -28,7 +28,7 @@ export const getArticleById = (article_id) => {
       return response.data.article;
     })
     .catch((err) => {
-      throw err.response.data;
+      throw err;
     });
 };
 
@@ -38,8 +38,8 @@ export const getArticleComments = (article_id) => {
     .then((response) => {
       return response.data.article;
     })
-    .catch((error) => {
-      console.error(error);
+    .catch((err) => {
+      throw err.response.data;
     });
 };
 

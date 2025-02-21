@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router";
 import { deleteComment, getArticleComments } from "../../functions/axios.api";
 import { CardActions, Button } from "@mui/material";
@@ -9,11 +9,16 @@ import { UserAccount } from "../../contexts/UserAccount";
 export const CommentsList = ({ commentList, setCommentList }) => {
   const { loggedInUser } = useContext(UserAccount);
   const { article_id } = useParams();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getArticleComments(article_id).then((articleComments) => {
-      setCommentList(articleComments);
-    });
+    getArticleComments(article_id)
+      .then((articleComments) => {
+        setCommentList(articleComments);
+      })
+      .catch((err) => {
+        setError(true);
+      });
   }, [article_id]);
 
   if (!commentList.length) return <p>There are no comments...</p>;
@@ -32,6 +37,9 @@ export const CommentsList = ({ commentList, setCommentList }) => {
       setCommentList([...commentList]);
     }
   };
+
+  if (error) return <p>Had some trouble getting comments</p>;
+
   return (
     <div className="article-page-comments-list">
       {commentList.map((comment) => {
