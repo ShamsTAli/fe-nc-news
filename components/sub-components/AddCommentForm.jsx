@@ -40,8 +40,7 @@ export const AddCommentForm = ({ setShowCommentForm, setCommentList }) => {
       setCommentInput({ body: "" });
       alert("Comment posted successfully");
     } catch (error) {
-      console.error("Failed to post comment:", error);
-      alert("Did not post comment");
+      alert("Did not post comment"); // Would this be considered error handling
     } finally {
       setShowCommentForm(false);
     }

@@ -28,7 +28,7 @@ export const getArticleById = (article_id) => {
       return response.data.article;
     })
     .catch((err) => {
-      throw err.response;
+      throw err.response.data;
     });
 };
 
